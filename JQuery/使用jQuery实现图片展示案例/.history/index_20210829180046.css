@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+li, ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.show {
+    /* 水平居中 */
+    margin: 100px auto;
+    width: 100px;
+    border: 1px solid black;
+}
+
+.left-tab li {
+    float: left;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 37px;
+    border: solid 1px #ddd;
+}
+
+.right-image {
+    width: 200px;
+    height: 360px;
+    border: 1px solid black;
+}

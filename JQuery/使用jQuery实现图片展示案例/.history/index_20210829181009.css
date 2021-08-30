@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+li, ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.show {
+    /* 水平居中 */
+    margin: 100px auto;
+    width: 605px;
+    border: 2px solid black;
+}
+
+.left-tab {
+    float: left;
+}
+
+.left-tab li {
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 37px;
+    border: solid 1px #ddd;
+}
+
+.right-image {
+    float: left;
+    width: 500px;
+    height: 360px;
+    border: 1px solid black;
+}
+
+.right-image img {
+    width: 100%;
+    height: 100%;
+}
