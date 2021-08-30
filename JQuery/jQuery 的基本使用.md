@@ -118,3 +118,129 @@ $("li:even");		//
 | `hasClass(class)`    | 判断当前元素是否含有某个特定的类 |
 | `eq(index)`          | 查找下标为`index`的元素          |
 
+### 案例：图片展示
+
+## 链式编程
+
+节省代码量
+
+`$(this).css("color","red").sibling().css("color","");`
+
+# jQuery 样式操作
+
+## 操作 css 方法
+
+1. 参数只写属性名，返回属性值
+
+   ```js
+   $(this).css("color");
+   ```
+
+2. 参数有属性名和属性值则为修改属性。
+
+   属性值一定要加`"`，如果是数字可以不用单位和引号
+
+   ```js
+   $(this).css("color","red");
+   ```
+
+3. 参数可以是对象
+
+   ```js
+   $("div").css({
+       width:400,
+       height:400,
+       backgroundColor:"red"	//如果有-必须改用驼峰命名
+   })
+   ```
+
+## 设置类样式方法
+
+1. 添加类
+
+   ```js
+   $("div").addClass("active");
+   ```
+
+2. 删除类
+
+   ```js
+   $("div").removeClass("active");
+   ```
+
+3. 切换类(添加或移除)
+
+   ```js
+   $("div").toggleClass("active");
+   ```
+
+## 类操作与 className 的区别
+
+类操作不影响原先类
+
+# jQuery 效果
+
+## 显示隐藏效果
+
+```js
+show();
+hide();
+toggle();
+//可加参数
+```
+
+## 滑动效果
+
+## 事件切换
+
+```js
+hover([over],[out])
+```
+
+# 动画队列及其停止排队方法
+
+## 动画或效果队列
+
+动画或效果一旦触发就会执行，如果多次触发，就造成多个动画或者效果排队执行
+
+## 停止排队
+
+```js
+stop();
+```
+
+- 写到动画或者效果的前面，相对于停止结束上一次的动画
+
+## 淡入淡出效果
+
+### 渐进方式调整到指定的不透明度
+
+```js
+fadeTo()
+```
+
+#### [.fadeTo( duration, opacity [, easing \] [, complete ] )](https://api.jquery.com/fadeTo/#fadeTo-duration-opacity-easing-complete)
+
+- **duration**!
+
+  Type: [String](http://api.jquery.com/Types/#String) or [Number](http://api.jquery.com/Types/#Number)
+
+  A string or number determining how long the animation will run.
+
+- **opacity**!
+
+  Type: [Number](http://api.jquery.com/Types/#Number)
+
+  A number between 0 and 1 denoting the target opacity.
+
+- **easing**
+
+  Type: [String](http://api.jquery.com/Types/#String)
+
+  A string indicating which easing function to use for the transition.
+
+- **complete**
+
+  Type: [Function](http://api.jquery.com/Types/#Function)()
+
+  A function to call once the animation is complete.
