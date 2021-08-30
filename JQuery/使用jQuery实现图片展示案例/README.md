@@ -2,7 +2,7 @@
 
 ## 效果
 
-![效果](D:\Github\Blog\JQuery\图片展示案例\效果.gif)
+![效果](./效果.gif)
 
 ## HTML
 
