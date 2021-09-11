@@ -1,0 +1,13 @@
+.main {
+    width: 100px;
+    border: 1px black solid;
+}
+
+.select-all {
+    background-color: rgb(196, 196, 196);
+    padding: 10px;
+}
+
+.single-intem {
+    padding: 5px;
+}
