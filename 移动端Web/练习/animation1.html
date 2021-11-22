@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 定义动画 */
+        @keyframes color {
+
+            0%,
+            100% {
+                background-color: rgb(248, 216, 216);
+
+            }
+
+            50% {
+                transform: scale(2);
+                background-color: rgb(233, 75, 75);
+            }
+
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(233, 75, 75);
+            /* 动画名称 */
+            animation-name: color;
+            /* 动画持续时间 */
+            animation-duration: 5s;
+            /* 重复次数（infinite 无数次 */
+            animation-iteration-count: infinite;
+            /* 是否反向播放  反方向*/
+            animation-direction: alternate;
+            /* 动画结束后状态 */
+            animation-fill-mode: backwards;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+
+    </div>
+</body>
+
+</html>

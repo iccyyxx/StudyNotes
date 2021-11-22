@@ -1,0 +1,154 @@
+body {
+    color: #000;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+    max-width: 540px;
+    min-width: 320px;
+    margin: 0 auto;
+    background: #f4f4f4;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: #222;
+    text-decoration: none;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+.search-box {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 540px;
+    min-width: 320px;
+    height: 44px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 0 4px;
+}
+
+.search {
+    flex: 1;
+    height: 30px;
+    margin: 8px;
+    border: 1.8px solid #0086f6;
+    border-radius: 16px;
+    color: #999;
+    padding: 5px 15px;
+}
+
+.local-nav {
+    display: flex;
+    height: 64px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 50px 4px 3px;
+}
+
+.local-nav li {
+    flex: 1;
+}
+
+.local-nav a {
+    display: flex;
+    flex-direction: column;
+    /* 侧轴垂直居中 */
+    align-items: center;
+    font-size: 12px;
+}
+
+.local-nav-icon {
+    margin-top: 8px;
+    width: 32px;
+    height: 32px;
+    background-color: rgb(143, 82, 82);
+}
+
+nav {
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 0 4px 3px;
+}
+
+.nav-common {
+    display: flex;
+    height: 88px;
+    background-color: #fff;
+}
+
+.nav-common:nth-child(2) {
+    margin: 3px 0;
+}
+
+.nav-items {
+    flex: 1;
+    height: 100%;
+
+}
+
+.nav-common:nth-child(1) {
+    /* 背景渐变 */
+    background: -webkit-linear-gradient(left, #fa5a55, #fa994d);
+}
+
+.nav-common:nth-child(2) {
+    /* 背景渐变 */
+    background: -webkit-linear-gradient(left, #4b90ed, #53bced);
+}
+
+.nav-common:nth-child(3) {
+    /* 背景渐变 */
+    background: -webkit-linear-gradient(left, #34c2a9, #6cd559);
+}
+
+.nav-items {
+    display: flex;
+    border-right: 1px solid #fff;
+    flex-direction: column;
+}
+
+.nav-items a {
+    flex: 1;
+    text-align: center;
+    line-height: 44px;
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, .2);
+}
+
+.nav-items a:nth-child(1) {
+    border-bottom: 1px solid #fff;
+}
+
+.nav-items:nth-child(1) a {
+    border: 0;
+}
+
+.subnav-enter {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.subnav-enter li {
+    flex: 20%;
+    text-align: center;
+    color: #fff;
+    border: solid 1px #fff;
+    background-color: rgba(52, 129, 65, 0.795);
+}

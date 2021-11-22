@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            margin: 100px auto;
+            width: 100px;
+            height: 40px;
+            /* perspective: 100px; */
+            transform-style: preserve-3d;
+            transition: all .5s;
+
+        }
+
+        .first,
+        .second,
+        .third {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            /* border-radius: 50%; */
+        }
+
+        .first {
+            background-color: rgb(221, 79, 79);
+            /* z-index: 1; */
+            transform: translateZ(20px);
+        }
+
+        .second {
+            background-color: rgb(255, 151, 14);
+            transform: translateY(20px) rotateX(-90deg);
+        }
+
+        .box:hover {
+            transform: rotateX(90deg);
+        }
+
+        .third {
+            background-color: rgb(240, 175, 35);
+            transform: rotateX(-180deg);
+
+        }
+
+        /* 
+        .box:focus {
+            transform: rotateX(90deg);
+        } */
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="first">陈成栋</div>
+        <div class="second">我爱你</div>
+        <div class="third">反应呢</div>
+    </div>
+    <script>
+        document.querySelector(".box").onclick = function () {
+            // alert("转");
+            document.querySelector(".box").style.transform = "rotateX(180deg)";
+        }
+    </script>
+</body>
+
+</html>
