@@ -1,0 +1,1 @@
+return dp[prices.length - 1];
