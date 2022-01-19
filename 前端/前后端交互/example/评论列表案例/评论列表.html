@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>评论</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .flex {
+            display: flex;
+            margin: 20px;
+
+        }
+
+        .left,
+        .right {
+            width: 50%;
+            flex: 1;
+        }
+
+        .item {
+            padding: 10px;
+            margin-top: 10px;
+            background-image: linear-gradient(to right bottom, rgba(247, 132, 132, 0.459), rgb(207, 228, 72));
+        }
+
+        .time {
+            float: right;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function getlist() {
+            $.ajax({
+                method: "GET",
+                url: "http://liulongbin.top:3006/api/cmtlist",
+                success: function (res) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        var j = res.data[i];
+                        $("#com-items").append('<li class="item">' +
+                            '<span class="name">' + j["username"] + ':</span>' +
+                            '<span class="detail">' + j["content"] + '</span>' +
+                            '<span class="time">' + j['time'] + '</span>' +
+                            '</li>')
+                    }
+                }
+            })
+        }
+        getlist();
+        $(function () {
+            $("#aa").submit(function (e) {
+                e.preventDefault();
+                var data = $(this).serialize();
+                console.log(data);
+                $.post('http://liulongbin.top:3006/api/addcmt', data,
+                    function (res) {
+                        if (res.status == 201) {
+                            alert("评论成功");
+                        }
+                        else {
+                            alert("评论失败");
+                        }
+                        $getlist();
+                        $("form")[0].reset();
+                    })
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="flex">
+        <div class="left">
+            <form id="aa">
+                <h1>发表评论</h1>
+                <label for="username">username:</label>
+                <input type="text" name="username" id="username">
+                <label for="content">comment:</label>
+                <textarea name="content" id="cpntent" rows="10"></textarea>
+                <input type="submit" value="发表">
+            </form>
+        </div>
+        <div class="right">
+            <h1>评论</h1>
+            <ul id="com-items">
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

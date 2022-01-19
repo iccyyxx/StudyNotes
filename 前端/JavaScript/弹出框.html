@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .grey {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      #title {
+        padding: 25px;
+        font-size: 26px;
+      }
+
+      #login {
+        position: relative;
+        display: block;
+        margin: 100px auto;
+        width: 400px;
+        height: 280px;
+        text-align: center;
+        background-color: #fff;
+      }
+
+      .login-items {
+        padding: 10px 0 10px 10px;
+        width: 300px;
+        margin: 10px;
+        border: rgb(196, 196, 196) 1px solid;
+      }
+
+      #close-btn {
+        position: absolute;
+        right: -20px;
+        top: -20px;
+        width: 40px;
+        height: 40px;
+        font-size: 10px;
+        line-height: 38px;
+        border-radius: 50%;
+        background-color: #fff;
+        border: rgb(196, 196, 196) 1px solid;
+      }
+
+      .login-header {
+        margin: 0 auto;
+        text-align: center;
+        font-size: 40px;
+        color: #000;
+      }
+    </style>
+  </head>
+
+  <body class="grey">
+    <div class="login-header">
+      <a href="" class="link">点击，弹出登录框</a>
+    </div>
+    <div id="login">
+      <div id="title">登录会员</div>
+      <form action="">
+        <input type="text" class="login-items" placeholder="请输入用户名" />
+        <input
+          type="password"
+          name=""
+          id=""
+          class="login-items"
+          placeholder="请输入登录密码"
+        />
+        <button type="submit" class="login-items" id="login-btn">登录</button>
+        <div id="close-btn">关闭</div>
+      </form>
+    </div>
+    <script>
+      var close_btn = document.querySelector("#close-btn");
+      var login = document.querySelector("#login");
+      var body = document.querySelector("body");
+      close_btn.addEventListener("click", function () {
+        body.className = "";
+        login.style.display = "none";
+      });
+      var title = document.querySelector("#title");
+      title.addEventListener("mousedown", function (e) {
+        var x = e.pageX - login.offsetLeft;
+        var y = e.pageY - login.offsetTop;
+        document.addEventListener("mousemove", move);
+        function move(e) {
+          login.style.left = e.pageX - x + "px";
+          login.style.top = e.pageY - y + "px";
+        }
+        document.addEventListener("mouseup", function () {
+          document.removeEventListener("mousemove", move);
+        });
+      });
+    </script>
+  </body>
+</html>

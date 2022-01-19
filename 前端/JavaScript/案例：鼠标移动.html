@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            position: absolute;
+            width: 50px;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导入图片 -->
+    <img src="./unnamed.gif" alt="小人">
+    <script>
+        document.addEventListener('mousemove',function(e){
+            var img=document.querySelector('img');
+            img.style.left=e.clientX+'px';
+            img.style.top=e.clientY+'px';
+        })
+    </script>
+</body>
+</html>

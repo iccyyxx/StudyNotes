@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        *,
+        img {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            position: relative;
+        }
+        
+        #id,
+        span {
+            width: 600px;
+            margin: 100px auto;
+            text-align: center;
+            display: block;
+        }
+        
+        span {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            display: none;
+            font-size: 80px;
+        }
+        
+        img {
+            width: 100%;
+        }
+        
+        button {
+            width: 600px;
+            height: 100px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <span>傻逼,我爱你</span>
+    <div id="id">
+        <img src="./Snipaste_2021-08-01_09-31-40.png" alt="">
+        <button id="close">我不想看！哼</button>
+    </div>
+    <script>
+        var btn = document.getElementById('close');
+        var div = document.querySelector('div');
+        var span = document.querySelector('span');
+        btn.onclick = function() {
+            div.style.display = 'none';
+            span.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

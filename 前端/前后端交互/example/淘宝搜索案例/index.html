@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://github.com/aui/art-template/blob/master/src/index.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .search {
+            width: 600px;
+            margin: 100px auto;
+
+        }
+
+        .search form {
+            width: 100%;
+            height: 50px;
+            padding: 10px;
+
+        }
+
+        .search input {
+            width: 80%;
+            height: 40px;
+            padding: 10px;
+        }
+
+        .search button {
+            width: 19%;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 步骤：
+    1. 搜索页面
+    2. 实时获取搜索框的内容
+    3. 利用模板引擎打印结果
+     -->
+
+    <!-- 模板引擎 -->
+    <script type="text/html" id="template">
+         {{each result}}
+         <div class="suggest-item">{{$value[0]}}</div>
+        {{/each}}
+    </script>
+    <!-- 搜索页面 -->
+    <div class="search">
+        <form action="">
+            <input type="text" id="search-text">
+            <button id="search-button">搜索</button>
+        </form>
+        <div id="search-list">
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search-text").on("keyup", function () {
+                var content = $("#search-text").val().trim();
+                // trim() 方法用于删除字符串的头尾空白符，空白符包括：空格、制表符 tab、换行符等其他空白符等
+                console.log(content);
+                if (content.length < 0) return;
+
+                suggestList(content);
+            })
+            // 跨域请求
+            var suggestList = function (content) {
+                $.ajax({
+                    url: "https://suggest.taobao.com/sug?code=utf-8&q=" + content,
+                    dataType: "jsonp",
+                    success: function (res) {
+                        // console.log(res);
+                        render(res)
+                    }
+                })
+            }
+        })
+        function render(res) {
+            if (res.result.length < 0) {
+                return $('#search-list').empty().hide();
+            }
+            var htmlStr = template("template", res)
+            $("#search-list").html(htmlStr).show();
+        }
+
+
+    </script>
+</body>
+
+</html>

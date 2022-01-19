@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蔡雅旋喜欢的事情</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        #main,
+        h1 {
+            width: 600px;
+            margin: 100px auto;
+        }
+        
+        h1 {
+            width: 100%;
+            height: 60px;
+            padding: 10px;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 30px;
+            line-height: 40px;
+            text-align: center;
+            background-color: brown;
+            border: 1px solid brown;
+            border-radius: 50px;
+            cursor: default
+        }
+        
+        #main .list {
+            width: 100%;
+            height: 60px;
+            padding: 10px;
+            margin-bottom: 20px;
+            color: brown;
+            font-size: 30px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid brown;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        
+        ul {
+            list-style: none;
+            margin: 0 auto;
+            margin: 0 15px 20px 15px;
+            font-size: 25px;
+            text-align: center;
+            border: 1px solid brown;
+            border-top: 0;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        ul li {
+            padding: 10px 0 10px 0;
+        }
+        
+        ul {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <h1>你了解我吗？</h1>
+        <div id="food" class="list">
+            喜欢吃什么呢
+        </div>
+        <ul id="food-list">
+            <li>肉松饼</li>
+            <li>肠粉</li>
+            <li>牛肉火锅</li>
+        </ul>
+        <div id="sport" class="list">
+            喜欢什么运动呢
+        </div>
+        <ul id="sport-list">
+            <li>踢毽子</li>
+            <li>打羽毛球</li>
+            <li>跑步</li>
+            <li>游泳</li>
+        </ul>
+        <div id="people" class="list">
+            喜欢谁呢
+        </div>
+        <ul id="people-list">
+            <li>当然是你啦</li>
+        </ul>
+    </div>
+    <script>
+        var food = document.getElementById('food');
+        var show1 = document.getElementById('food-list');
+        var flag1 = true;
+        food.onclick = function() {
+            if (flag1) {
+                flag1 = false;
+                show1.style.display = "block";
+                this.style.margin = 0;
+            } else {
+                flag1 = true;
+                show1.style.display = "none";
+                this.style.margin = '0 0 10px 0';
+            }
+        }
+        var sport = document.getElementById('sport');
+        var show2 = document.getElementById('sport-list');
+        var flag2 = true;
+        sport.onclick = function() {
+            if (flag2) {
+                flag2 = false;
+                show2.style.display = "block";
+                this.style.margin = 0;
+            } else {
+                flag2 = true;
+                show2.style.display = "none";
+                this.style.margin = '0 0 10px 0';
+            }
+        }
+        var people = document.getElementById('people');
+        var show3 = document.getElementById('people-list');
+        var flag3 = true;
+        people.onclick = function() {
+            if (flag3) {
+                flag3 = false;
+                show3.style.display = "block";
+                this.style.margin = 0;
+            } else {
+                flag3 = true;
+                show3.style.display = "none";
+                this.style.margin = '0 0 10px 0';
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

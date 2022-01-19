@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .img {
+        position: relative;
+        margin: 100px auto;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .mask {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        background: #fede4f;
+        opacity: 0.5;
+        cursor: move;
+      }
+      .big {
+        /* display: none; */
+        position: relative;
+        position: absolute;
+        left: 250px;
+        top: 0;
+        width: 400px;
+        height: 400px;
+        background-color: pink;
+        z-index: 999;
+        border: 1px solid #ccc;
+        overflow: hidden;
+      }
+      .mask-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 800px;
+        height: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="img">
+      <img src="./image/下载.jpg" alt="" />
+      <!-- 遮盖曾 -->
+      <div class="mask"></div>
+      <!-- 放大的区域 -->
+      <div class="big">
+        <img src="./image/下载.jpg" alt="" class="mask-img" />
+      </div>
+    </div>
+    <script>
+      var img = document.querySelector(".img");
+      var mask = document.querySelector(".mask");
+      var big = document.querySelector(".big");
+      img.addEventListener("mouseover", function () {
+        mask.style.display = "block";
+        big.style.display = "block";
+      });
+      img.addEventListener("mouseout", function () {
+        mask.style.display = "none";
+        big.style.display = "none";
+      });
+      img.addEventListener("mousemove", function (e) {
+        var x = e.pageX - this.offsetLeft;
+        var y = e.pageY - this.offsetTop;
+        var maskX = x - mask.offsetWidth / 2;
+        var maskY = y - mask.offsetHeight / 2;
+        if (maskX <= 0) maskX = 0;
+        else if (maskX >= img.offsetWidth - mask.offsetWidth) {
+          maskX = img.offsetWidth - mask.offsetWidth;
+        }
+        if (maskY <= 0) maskY = 0;
+        else if (maskY >= img.offsetHeight - mask.offsetHeight) {
+          maskY = img.offsetHeight - mask.offsetHeight;
+        }
+        mask.style.left = maskX + "px";
+        mask.style.top = maskY + "px";
+        var mask_img = document.querySelector(".mask-img");
+        mask_img.style.top = -maskY * 4 + "px";
+        mask_img.style.left = -maskX * 4 + "px";
+      });
+    </script>
+  </body>
+</html>

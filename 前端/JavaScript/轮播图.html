@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+
+        .slideshow {
+            position: relative;
+            /* 使图片水平居中 */
+            margin: 200px auto;
+            width: 500px;
+            height: 290px;
+            overflow: hidden;
+        }
+
+        .slide-ul {
+            position: absolute;
+            left: 0;
+            width: 600%;
+        }
+
+        .slide-items {
+            float: left;
+            height: 290px;
+            border: 10px #fff solid;
+            border-radius: 50px;
+            /* 使图片水平居中 Center the image horizontally */
+            text-align: center;
+            /* 使图片多余部分隐藏 */
+            overflow: hidden;
+        }
+
+        .slide-items img {
+            width: 480px;
+            height: 270px;
+        }
+
+        .skip {
+            display: none;
+        }
+
+        .pre-btn,
+        .next-btn {
+            position: absolute;
+            top: 50%;
+            height: 40px;
+            margin-top: -20px;
+            line-height: 57px;
+            background-color: #fff;
+        }
+
+        .pre-btn {
+            left: 6px;
+            border-radius: 0 50px 50px 0;
+        }
+
+        .next-btn {
+            right: 6px;
+            border-radius: 50px 0 0 50px;
+        }
+
+        .list-ul {
+            position: absolute;
+            left: 50%;
+            bottom: 25px;
+            margin-left: -110px;
+            line-height: 12px;
+            border-radius: 50px;
+            background-color: #fff;
+            opacity: .8;
+        }
+
+        .list-ul li {
+            float: left;
+        }
+
+        .list-ul li img {
+            margin: 0 10px 0 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slideshow">
+        <ul class="slide-ul">
+            <li class="slide-items">
+                <!-- 1920*1080 -->
+                <img src="https://w.wallhaven.cc/full/8o/wallhaven-8oky1j.jpg" alt="">
+            </li>
+            <li class="slide-items">
+                <img src="https://w.wallhaven.cc/full/pk/wallhaven-pkkm6p.png" alt="">
+            </li>
+            <li class="slide-items">
+                <img src="https://w.wallhaven.cc/full/rd/wallhaven-rddgwm.jpg" alt="">
+            </li>
+            <li class="slide-items">
+                <img src="https://w.wallhaven.cc/full/j3/wallhaven-j3kjep.jpg" alt="">
+            </li>
+            <li class="slide-items">
+                <img src="https://w.wallhaven.cc/full/z8/wallhaven-z8orkw.jpg" alt="">
+            </li>
+        </ul>
+        <div class="skip">
+            <div class="pre-btn">
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/chevron-left.png" />
+            </div>
+            <div class="next-btn">
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/chevron-right.png" />
+            </div>
+        </div>
+
+        <ul class="list-ul">
+            <li class='active'>
+                <img src="https://img.icons8.com/material-rounded/24/000000/filled-circle.png" />
+            </li>
+            <li>
+                <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" />
+            </li>
+            <li>
+                <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" />
+            </li>
+            <li>
+                <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" />
+            </li>
+            <li>
+                <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" />
+            </li>
+        </ul>
+    </div>
+    <script>
+        //翻页按钮的显示与隐藏 
+        var skip = document.querySelector(".skip");
+        var slide = document.querySelector(".slideshow");
+        var circle = document.querySelectorAll(".list-ul li");
+        var list_ul = document.querySelector(".list-ul")
+        var slide_ul = document.querySelector(".slide-ul");
+        var img = document.querySelectorAll(".slide-items");
+
+        var timer = setInterval(function () {
+            var pos = findNowPosition();
+            pos = (pos + 1) % 5
+            // 实现循环
+            list_ul.children[pos].className = "active";
+            list_ul.children[pos].children[0].src = "https://img.icons8.com/material-rounded/24/000000/filled-circle.png";
+            slide_ul.style.left = -500 * pos + "px";
+        }, 2000);
+        // 翻页按钮的显示与隐藏
+        slide.addEventListener("mouseout", function () {
+            skip.style.display = "none";
+            window.clearInterval(timer);
+            // 自动翻页
+            timer = setInterval(function () {
+                var pos = findNowPosition();
+                pos = (pos + 1) % 5
+                // 实现循环
+                list_ul.children[pos].className = "active";
+                list_ul.children[pos].children[0].src = "https://img.icons8.com/material-rounded/24/000000/filled-circle.png";
+                slide_ul.style.left = -500 * pos + "px";
+            }, 1000)
+        })
+        slide.addEventListener("mouseover", function () {
+            skip.style.display = "block";
+            window.clearInterval(timer);
+        })
+
+        // 原点与图片的切换
+        // 找到当前位置
+        function findNowPosition() {
+            var pos;
+            for (var i = 0; i < list_ul.children.length; i++) {
+                if (list_ul.children[i].className == "active") {
+                    pos = i;
+                    list_ul.children[i].className = '';
+                    list_ul.children[i].children[0].src = "https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png";
+                }
+            }
+            return pos;
+        }
+        // 点击小圆点实现图片跳转
+        list_ul.addEventListener("click", function (e) {
+            // 判断点击的是否为 img
+            if (e.path.length == 8) {
+                // children 是不包含文本，css等，而childNodes包含文本内容
+                // 所有恢复原状
+                for (var i = 0; i < list_ul.children.length; i++) {
+                    list_ul.children[i].className = "";
+                    list_ul.children[i].children[0].src = "https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png"
+                }
+                // 被选中的点显示
+                e.target.src = "https://img.icons8.com/material-rounded/24/000000/filled-circle.png";
+                // 标记选中的位置
+                e.target.parentNode.className = "active"; //list-li
+                var pos;
+                for (var i = 0; i < list_ul.children.length; i++) {
+                    if (list_ul.children[i].className == "active") {
+                        pos = i;
+                    }
+                    // 根据选中的位置移动
+                    slide_ul.style.left = -500 * pos + "px";
+                }
+            }
+        })
+
+        // 翻页跳转
+        // 返回上一页
+        var pre_btn = document.querySelector(".pre-btn");
+        pre_btn.addEventListener("click", function () {
+            // 找到当前位置
+            var pos = findNowPosition();
+            pos = (pos - 1 + 5) % 5
+            // 实现循环
+            list_ul.children[pos].className = "active";
+            list_ul.children[pos].children[0].src = "https://img.icons8.com/material-rounded/24/000000/filled-circle.png";
+            slide_ul.style.left = -500 * pos + "px";
+        })
+        // 下一页
+        var next_btn = document.querySelector(".next-btn");
+        next_btn.addEventListener("click", function () {
+            // 找到当前位置
+            var pos = findNowPosition();
+            pos = (pos + 1) % 5
+            // 实现循环
+            list_ul.children[pos].className = "active";
+            list_ul.children[pos].children[0].src = "https://img.icons8.com/material-rounded/24/000000/filled-circle.png";
+            slide_ul.style.left = -500 * pos + "px";
+        })
+
+
+    </script>
+</body>
+
+</html>

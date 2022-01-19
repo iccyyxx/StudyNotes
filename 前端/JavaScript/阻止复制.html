@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            margin: 100px auto;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        .son {
+            width: 50px;
+            height: 50px;
+            background-color: skyblue;
+        }
+
+        ul {
+            list-style: none;
+            margin: 100px auto;
+
+        }
+
+        li {
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #000;
+            border-radius: 50px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- <div class="father">
+        <div class="son">
+            111
+        </div>
+    </div>
+    <script>
+        // 阻止冒泡 DOM 推荐的标准 stopPropagation
+        var son = document.querySelector('.son');
+        son.addEventListener('click', function (e) {
+            alert('son');
+            // e.stopPropagation();
+            // e.cancelBubble = true;
+            //兼容性解决方案
+            if (e && e.stopPropagation){
+                e.stopPropagation();
+            }
+            else window.event.cancelBubble = true;
+        }, false);
+        var father = document.querySelector('.father');
+        father.addEventListener('click', function () {
+            alert('father');
+        });
+    </script> -->
+
+
+    <!-- <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        // 给子节点添加事件
+        var li = document.querySelectorAll('li');
+        for (let i = 0; i < li.length; i++) {
+            li[i].onclick = function () {
+                alert(this.innerHTML);
+            }
+
+            li[i].addEventListener('click', function () {
+                alert(this.innerHTML);
+            })
+        }
+
+        //事件委托
+        //给父节点添加侦听器，利用事件冒泡影响每一个子节点
+        var ul1 = document.querySelector('ul');
+        ul1.addEventListener('click', function (e) {
+            alert(e.target.innerHTML);
+        })
+    </script> -->
+
+    你复制不了略略略
+    <script>
+        //1.禁用右键菜单
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        })
+        //2. 禁止选中
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        })
+    </script>
+</body>
+
+</html>

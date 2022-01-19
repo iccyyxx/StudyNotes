@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-size: 30px;
+        box-sizing: border-box;
+      }
+      div,
+      span {
+        display: inline-block;
+      }
+      section {
+        height: 100px;
+        margin: 200px auto;
+        text-align: center;
+      }
+      h3 {
+        font-size: 40px;
+        margin: 30px;
+      }
+      div {
+        margin: 0 20px 0 20px;
+        width: 70px;
+        padding: 10px 0 10px 0;
+        border: 1px solid black;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h3>距离成本生日还有</h3>
+      <div id="months"></div>
+      <span>个月</span>
+      <div id="days"></div>
+      <span>天</span>
+      <div id="hours"></div>
+      <span>小时</span>
+      <div id="minutes"></div>
+      <span>分钟</span>
+      <div id="seconds"></div>
+      <span>秒</span>
+    </section>
+    <script>
+      var months = document.getElementById("months");
+      var days = document.getElementById("days");
+      var hours = document.getElementById("hours");
+      var minutes = document.getElementById("minutes");
+      var seconds = document.getElementById("seconds");
+      var countdown = function () {
+        var birTime = new Date("2021-08-13 00:00:00").getTime() / 1000;
+        var nowTime = new Date().getTime() / 1000;
+        var disTime = parseInt(birTime - nowTime);
+
+        seconds.innerHTML = disTime % 60;
+        minutes.innerHTML = parseInt(disTime / 60) % 60;
+        hours.innerHTML = parseInt(disTime / 60 / 60) % 60;
+        days.innerHTML = parseInt(disTime / 60 / 60 / 60) % 60;
+        months.innerHTML = parseInt(disTime / 60 / 60 / 60 / 60) % 60;
+      };
+      setInterval(countdown, 1000);
+    </script>
+  </body>
+</html>
