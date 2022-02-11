@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>表单</title>
+    <style type="text/css">
+      * {
+        padding: 5px;
+      }
+
+      #app span {
+        display: inline-block;
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <form>
+        <div>
+          <span>姓名:</span>
+          <input type="text" v-model.trim="name1" v-model="name2">
+        </div>
+        <div>
+          <span>性别:</span>
+          <input type="radio" value="male" id="male" v-model="gender">
+          <label for="male">男</label>
+          <input type="radio" value="female" id="female" v-model="gender">
+          <label for="female">女</label>
+        </div>
+        <div>
+          <span>爱好:</span>
+          <input type="checkbox" value="sing" v-model="hobby">唱歌
+          <input type="checkbox" value="paint" v-model="hobby">画画
+          <input type="checkbox" value="read" v-model="hobby">看书
+        </div>
+        <div>
+          <span>职业：</span>
+          <select v-model="work">
+            <option value="">请选择</option>
+            <option value="student">学生</option>
+            <option value="teacher">教师</option>
+            <option value="doctor">医生</option>
+            <option value="painter">画家</option>
+          </select>
+        </div>
+        <div>
+          <span>个人简介:</span>
+          <textarea id="" v-model="introduction"></textarea>
+        </div>
+        <input type="submit" v-on:click.prevent="handle">
+      </form>
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <td>({{name1}}),不过滤空格:({{name2}})</td>
+            </tr>
+            <tr>
+              <th>性别</th>
+              <td>{{gender}}</td>
+            </tr>
+            <tr>
+              <th>爱好</th>
+              <td>{{hobby}}</td>
+            </tr>
+            <tr>
+              <th>职业</th>
+              <td>{{work}}</td>
+            </tr>
+            <tr>
+              <th>个人简介</th>
+              <td>{{introduction}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <script type=" text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+      var info = new Vue({
+        el: "#app",
+        data: {
+          name1: '',
+          name2: '',
+          gender: '',
+          hobby: [],
+          work: '',
+          introduction: ''
+        },
+        methods: {
+          handle: function () {
+            console.log(this);
+          }
+        }
+      })
+    </script>
+
+  </body>
+
+</html>

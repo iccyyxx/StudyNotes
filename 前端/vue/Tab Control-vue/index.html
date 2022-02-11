@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+
+  <body>
+    <!-- 主体 -->
+    <div id="show" class="show">
+      <!-- 左侧tab栏 -->
+      <div class="left-tab">
+        <ul>
+          <li v-on:click="change(index)" :class="currentIndex==index?'active':''" :key="item.id"
+            v-for="(item,index) in picture">
+            <a>{{item.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <!-- 右侧图片展示栏 -->
+      <div class="right-image">
+        <ul>
+          <li :class="currentIndex==index?'current':''" :key="item.id" v-for="(item,index) in picture">
+            <img :src="item.path" alt="">
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: "#show",
+        data: {
+          currentIndex: 0,//当前索引
+          picture: [
+            { id: 1, name: "哆啦 A 梦", path: "./image/哆啦A梦.jpeg" },
+            { id: 2, name: "蜡笔小新", path: "./image/蜡笔小新.png" },
+            { id: 3, name: "黑猫警长", path: "./image/黑猫警长.png" },
+            { id: 4, name: "名侦探柯南", path: "./image/名侦探柯南.png" },
+            { id: 5, name: "樱桃小丸子", path: "./image/樱桃小丸子.jpeg" },
+            { id: 6, name: "葫芦娃", path: "./image/葫芦娃.png" },
+            { id: 7, name: "聪明的一休", path: "./image/聪明的一休.jpeg" },
+            { id: 8, name: "七龙珠", path: "./image/七龙珠.jpeg" },
+            { id: 9, name: "海绵宝宝", path: "./image/海绵宝宝.png" },
+          ]
+        },
+        methods: {
+          change: function (index) {
+            this.currentIndex = index;
+          }
+        }
+      })
+    </script>
+  </body>
+
+</html>

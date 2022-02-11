@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <main>
+      <table>
+        <tbody>
+          <tr>
+            <th>数字1：</th>
+            <th><input type="text" v-model="num1"></th>
+          </tr>
+          <tr>
+            <th>数字2：</th>
+            <th><input type="text" v-model="num2"></th>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <button @click="add()">+</button>
+              <button @click="sub()">-</button>
+              <button @click="multi()">×</button>
+              <button @click="div()">÷</button>
+            </td>
+          </tr>
+          <tr>
+            <th>结果：</th>
+            <th><input type="text" v-model="result" disabled></th>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+      var add_result = new Vue({
+        el: "main",
+        data: {
+          num1: '',
+          num2: '',
+          result: ''
+        },
+        methods: {
+          add() {
+            this.result = parseFloat(this.num1) + parseFloat(this.num2);
+          },
+          sub() {
+            this.result = parseFloat(this.num1) - parseFloat(this.num2);
+          },
+          multi() {
+            this.result = parseFloat(this.num1) * parseFloat(this.num2);
+          },
+          div() {
+            if (this.num2 == '0') alert("除数不能为0");
+            this.result = parseFloat(this.num1) / parseFloat(this.num2)
+          }
+        }
+      })
+
+
+    </script>
+  </body>
+
+</html>

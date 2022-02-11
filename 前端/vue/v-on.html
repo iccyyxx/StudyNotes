@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>v-on</title>
+  </head>
+
+  <body>
+    <p>一:</p>
+    <div id="shop-num1">
+      <button type="button" v-on:click="num--">-</button>
+      <input type="text" v-model="num">
+      <button type="button" v-on:click="num++">+</button>
+    </div>
+    <p>二:简写</p>
+    <div id="shop-num2">
+      <button type="button" @click="num--">-</button>
+      <input type="text" v-model="num">
+      <button type="button" @click="num++">+</button>
+    </div>
+    <p>三:方法</p>
+    <div id="shop-num3">
+      <button type="button" v-on:click="sub()">-</button>
+      <input type="text" v-model="num">
+      <button type="button" v-on:click="add">+</button>
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+      var number = new Vue({
+        el: "#shop-num1",
+        data: {
+          num: 1
+        }
+      })
+      var number1 = new Vue({
+        el: "#shop-num2",
+        data: {
+          num: 2
+        }
+      })
+      var number3 = new Vue({
+        el: "#shop-num3",
+        data: {
+          num: 3
+        },
+        methods: {
+          add: function () {
+            this.num++
+          },
+          sub: function () {
+            this.num--;
+          }
+        }
+      })
+    </script>
+
+  </body>
+
+</html>

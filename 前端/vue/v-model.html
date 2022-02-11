@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <main>
+      <div>
+        <h1>没有双向绑定</h1>
+        <input type="text" v-bind:value="msg">
+        <br>
+        输入框的内容为：<div v-text="msg"></div>
+      </div>
+      <div>
+        <h1>双向绑定</h1>
+        <input type="text" v-bind:value="msg1" v-on:input="handle">
+        <br>
+        输入框的内容为：<div v-text="msg1"></div>
+        <h1>双向绑定简写</h1>
+        <input type="text" v-bind:value="msg2" v-on:input="msg2=$event.target.value">
+        <br>
+        输入框的内容为：<div v-text="msg2"></div>
+      </div>
+    </main>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: "main",
+        data: {
+          msg: 123,
+          msg1: 1234,
+          msg2: 111
+        },
+        methods: {
+          handle(event) {
+            this.msg1 = event.target.value;
+            console.log(this.msg1);
+          }
+        }
+      })
+    </script>
+  </body>
+
+</html>
