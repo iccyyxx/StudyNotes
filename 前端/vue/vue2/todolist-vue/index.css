@@ -31,7 +31,7 @@ header {
     width: 18em;
 }
 
-#todo-doing, #todo-done {
+.box {
     padding: 1em 1em 0 1em;
 }
 

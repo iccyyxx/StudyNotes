@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TodoList</title>
+        <link rel="stylesheet" href="index.css">
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="all-list">
+            <header>
+                <div class="container">
+                    <div id="logo">
+                        TodoList
+                    </div>
+                    <input type="text" class="todo-add" id="todo-add" placeholder="添加 todo" v-model="todoContent"
+                        v-on:keyup.enter="add">
+                </div>
+            </header>
+            <section>
+                <div class="container">
+                    <div class="box">
+                        <h2>正在进行</h2>
+                        <span class="count">{{todoNum}}</span>
+                        <ol class="todo-items">
+                            <li v-for="todo in todoList" v-if="!todo.done">
+                                <img src="./icon/checkbox-unchecked.svg" alt="" class="check" @click="change(todo)">
+                                <span class="content">{{todo.title}}</span>
+                                <img src="./icon/icons8-cancel-16.png" alt="" class="delete" @click="del(todo)">
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="box">
+                        <h2>已经完成</h2>
+                        <span class="count">{{doneNum}}</span>
+                        <ol class="todo-items">
+                            <li v-for="todo in todoList" v-if="todo.done">
+                                <img src="./icon/checkbox-checked.svg" alt="" class="check" @click="change(todo)">
+                                <span class="content">{{todo.title}}</span>
+                                <img src="./icon/icons8-cancel-16.png" alt="" class="delete" @click="del(todo)">
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script type="text/javascript">// 读取本地数据，渲染页面
+            localStorage.setItem("todoList", '[{title: "123", done: false}, {title: "123", done: false}]');
+            var vm = new Vue({
+                el: "#all-list",
+                data: {
+                    todoList: JSON.parse(localStorage.todoList),
+                    // todoList: '',
+                    todoContent: '',
+                    doneNum: 0,
+                    todoNum: 0
+                },
+                methods: {
+                    doneList: function () {
+                        return this.todoList.filter(function (item) {
+                            return item.done;
+                        })
+                    },
+                    save: function () {
+                        if (this.todoList != '') {
+                            this.doneNum = this.todoList.filter(function (item) {
+                                return item.done;
+                            }).length;
+                            this.todoNum = this.todoList.filter(function (item) {
+                                return !item.done;
+                            }).length;
+                            localStorage.setItem("todoList", JSON.stringify(this.todoList))
+                        }
+                    },
+                    add: function () {
+                        this.todoList.push({ "title": this.todoContent, "done": false });
+                        this.todoContent = '';
+                        this.save();
+                    },
+                    change: function (todo) {
+                        // 读取当前数据并改变状态
+                        todo.done = !todo.done;
+                        this.save();
+                    },
+                    del: function (item) {
+                        console.log(item);
+                        this.todoList.splice(item, 1);
+                        this.save();
+                    }
+                }
+            });
+            vm.save();
+        </script>
+
+    </body>
+
+</html>

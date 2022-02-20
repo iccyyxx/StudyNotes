@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+    <style>
+      .cart-num {
+        display: inline-block;
+        width: 40px;
+        text-align: center;
+      }
+
+      .cart-sum {
+        color: red;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div id="shopCart">
+      <div>总数量：{{allCount}}件</div>
+      <div>总价：{{allSum}}元</div>
+      <table>
+        <thead>
+          <tr>
+            <th><input type="checkbox" v-model="allChoose" @click="isAllChoose"></th>
+            <th>商品名称</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>小计</th>
+            <th>库存</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in items">
+            <td>
+              <input type="checkbox" v-model="item.checked" @click="change(item)">
+            </td>
+            <td>{{item.name}}
+            </td>
+            <td>{{item.price}}元</td>
+            <td>
+              <div>
+                <button @click="item.count--" :disabled="sub(item)">-</button>
+                <input type="text" class="cart-num" v-model="item.count">
+                <button @click="item.count++" :disabled="isDisabled(item)">+</button>
+              </div>
+            </td>
+            <td><span class="cart-sum">{{item.price*item.count}}元</span></td>
+            <td>{{item.inventory}}</td>
+            <td>
+              <button @click="del(item)">删除</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      var cart = new Vue({
+        el: "#shopCart",
+        data: {
+          items: [
+            {
+              name: "inFace黑头仪 白色MS7000",
+              price: 99,
+              count: 2,
+              checked: true,
+              inventory: 999
+            }, {
+              name: " 日常元素 暖宝宝(10片装) 白色",
+              price: 16.9,
+              count: 1,
+              checked: false,
+              inventory: 10
+            }
+          ],
+          allChoose: false
+        },
+        methods: {
+          del: function (item) {
+            this.items.pop(item);
+          },
+          change: function (item) {
+            item.checked = !item.checked;
+            var count = 0;
+            for (var i = 0; i < this.items.length; i++) {
+              if (this.items[i].checked == true) count++;
+            }
+            this.allChoose = (count == this.items.length ? true : false);
+          },
+          isAllChoose: function () {
+            this.allChoose = !this.allChoose;
+            for (item of this.items) {
+              item.checked = this.allChoose;
+            }
+          },
+          sub: function (item) {
+            if (item.count <= 1) {
+              return true;
+            } else {
+              return false;
+            }
+          },
+          isDisabled: function (item) {
+            if (item.count >= item.inventory) {
+              return true;
+            }
+          }
+        },
+        computed: {
+          allSum: function () {
+            var t = 0;
+            for (item of this.items) {
+              if (item.checked == true) {
+                t += item.count * item.price;
+              }
+            }
+            return t;
+          },
+          allCount: function () {
+            var c = 0;
+            for (item of this.items) {
+              if (item.checked == true) {
+                c += item.count;
+              }
+            }
+            return c;
+          },
+        }
+      })
+    </script>
+
+
+  </body>
+
+</html>
