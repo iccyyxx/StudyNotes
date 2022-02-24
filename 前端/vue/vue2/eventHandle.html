@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+  </head>
+
+  <body>
+    <!-- 监听事件 -->
+    <div id="listening">
+      <button v-on:click="count+=1">+1</button>
+      这个按钮被点击了{{count}}次
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: "#listening",
+        data: {
+          count: 0
+        }
+      })
+    </script>
+    <!-- 事件方法 -->
+    <!-- 需要在内联语句处理器中访问原始的 DOM 事件。可以用特殊变量 $event 把它传入方法： -->
+    <div id="method">
+      <button v-on:click="say('Hi')">Say Hi</button>
+      <button v-on:click="say('Hello')">Say Hello</button>
+      <button v-on:click="output($event)">输出event</button>
+      <!-- 键盘事件 -->
+      <div>
+        按回车发送
+        <input v-on:keyup.enter="say(text)" v-model="text">
+      </div>
+
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: "#method",
+        data: {
+          text: ''
+        },
+        methods: {
+          say: function (msg) {
+            alert(msg);
+          },
+          output: function (event) {
+            alert(event.target);
+            console.log(event);
+          }
+        }
+      })
+    </script>
+
+  </body>
+
+</html>

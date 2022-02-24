@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="todo-list">
+      <form v-on:submit.prevent="addTodo()">
+        <label for="add">添加</label>
+        <input v-model="content" id="add" placeholder="E.g. 吃饭饭">
+        <button>添加</button>
+      </form>
+      <ul>
+        <li is="todo-item" v-for="(item,index) in todoList" v-on:remove="todoList.splice(index,1)"
+          v-bind:title="item.todoText" v-bind:key="item.id"></li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      Vue.component("todo-item", {
+        template: '<li> {{title}} <button v-on:click="$emit(\'remove\')">删除</button></li>',
+        props: ["title"]
+      });
+      var todo = new Vue({
+        el: "#todo-list",
+        data: {
+          todoList: [
+            { id: 1, todoText: "洗澡" },
+            { id: 2, todoText: "喝药" },
+            { id: 3, todoText: "泡脚" }
+          ],
+          content: '',
+          sum: 3
+        },
+        methods: {
+          addTodo: function () {
+            this.sum++;
+            this.todoList.push({ id: this.sum, todoText: this.content })
+            this.content = ''
+          }
+        }
+      })
+    </script>
+  </body>
+
+</html>

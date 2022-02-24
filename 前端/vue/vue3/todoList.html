@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue3.js"></script>
+    <title>Todo</title>
+  </head>
+
+  <body>
+    <div id="todo">
+      <form v-on:submit.prevent="add()">
+        <label for="todo-content">todo:</label>
+        <input type="type" id="todo-content" v-model="nextText">
+        <button>add</button>
+      </form>
+      <ul>
+        <todo-item v-for="(item,index) in todoList" :key="item.id" :title="item.title"
+          @remove="todoList.splice(index,1)"></todo-item>
+      </ul>
+    </div>
+    <script type="text/javascript">
+      const todo = Vue.createApp({
+        data() {
+          return {
+            nextText: '',
+            todoList: [
+              { id: 1, title: "背单词" },
+              { id: 2, title: "学习" }
+            ],
+            newId: 3
+          }
+        },
+        methods: {
+          add() {
+            this.todoList.push({ id: this.newId++, title: this.nextText });
+            this.nextText = '';
+          }
+        },
+      })
+      todo.component('todo-item', {
+        template: `
+        <li>
+        {{title}}
+        <button v-on:click="$emit('remove')">删除</button>
+        </li>
+        `,
+        props: ['title'],
+        emits: ['remove']
+      })
+      var vm = todo.mount("#todo");
+    </script>
+
+  </body>
+
+</html>
