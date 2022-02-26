@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博文组件</title>
+    <script type="text/javascript" src="vue3.js"></script>
+  </head>
+
+  <body>
+    <div id="post-blog">
+      <div :style="{fontSize:postFontSize+'em'}">
+        <post-blog v-for="(item,index) in post" :title="item.title" :key="item.id" @enlarge-text="postFontSize+=$event">
+        </post-blog>
+      </div>
+
+    </div>
+
+    <script type="text/javascript">
+      const App = {
+        data() {
+          return {
+            post: [
+              { id: 1, title: "组件" },
+              { id: 2, title: "博客文章" },
+              { id: 3, title: "博客标题" }
+            ],
+            postFontSize: 1
+          }
+        }
+      }
+      const app = Vue.createApp(App);
+
+      app.component("post-blog", {
+        emits: ["enlargeText"],
+        props: ["title"],
+        template: `
+        <h4>{{title}}</h4>
+        <button @click="$emit('enlargeText',0.1)">放大字体</button>
+        `
+      })
+      app.mount("#post-blog");
+    </script>
+
+
+  </body>
+
+</html>

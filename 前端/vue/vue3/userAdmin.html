@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="vue3.js"></script>
+    <style>
+      th,
+      td {
+        padding: 5px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 
+      1. 界面
+      2. 数据绑定
+     -->
+    <div id="course-admin">
+      <h1>课程管理</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>课程编号</th>
+            <th>课程名</th>
+            <th>学分</th>
+            <th>类型</th>
+            <th>考核方式</th>
+            <th colspan="2">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(course,index) in courseInfo" :key="course.id">
+            <td>{{course.id}}</td>
+            <td>{{course.name}}</td>
+            <td>{{course.credit}}</td>
+            <td v-if="course.class='compulsory'">必修</td>
+            <td v-else if="course.class='optional'">选修</td>
+            <td v-if="course.access==1">大作业</td>
+            <td v-else if="course.access==0">期末考</td>
+            <td>
+              <a href="" @click.prevent="edit(course)">edit</a>
+            </td>
+            <td>
+              <a href="" @click.prevent="this.courseInfo.splice(index, 1)">delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="text" name="" id="id" :disabled="isChange" v-model="idInput"></td>
+            <td><input type="text" name="" id="name" v-model="nameInput"></td>
+            <td><select name="" id="credit" v-model="creditInput">
+                <option value="default">请选择</option>
+                <option value="1">1 学分</option>
+                <option value="2">2 学分</option>
+                <option value="3">3 学分</option>
+                <option value="4">4 学分</option>
+                <option value="5">5 学分</option>
+                <option value="6">6 学分</option>
+              </select></td>
+            <td>
+              <select name="" id="class" v-model="classInput">
+                <option value="default">请选择</option>
+                <option value="compulsory">必修课</option>
+                <option value="optional">选修课</option>
+              </select>
+            </td>
+            <td>
+              <select name="" id="access" v-model="accessInput">
+                <option value="default">请选择</option>
+                <option value='1'>大作业</option>
+                <option value="0">期末考</option>
+              </select>
+            </td>
+            <td><button @click="add()">add</button> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script type="text/javascript">
+      const app = {
+        data() {
+          return {
+            courseInfo: [
+              {
+                id: 1, name: "data structure", credit: 3, access: 1, class: "optional"
+              },
+              {
+                id: 2, name: "java", credit: 3, access: 0, class: "compulsory"
+              }
+            ],
+            idInput: '',
+            nameInput: '',
+            creditInput: '',
+            accessInput: '',
+            classInput: '',
+            isChange: false
+          }
+        },
+        methods: {
+          edit(course) {
+            this.idInput = course.id;
+            this.nameInput = course.name;
+            this.creditInput = course.credit;
+            this.accessInput = course.access;
+            this.classInput = course.class;
+            this.isChange = true;
+          },
+          delete(index) {
+            this.courseInfo = this.courseInfo.splice(index, 1);
+          },
+          add() {
+            if (this.isChange) {
+              this.courseInfo.some((item) => {
+                if (item.id == this.idInput) {
+                  item.name = this.nameInput;
+                  item.credit = this.creditInput;
+                  item.access = this.accessInput;
+                  item.class = this.classInput;
+                  return true;
+                }
+              })
+            } else {
+              this.courseInfo.push(
+                {
+                  id: this.idInput,
+                  name: this.nameInput,
+                  credit: this.creditInput,
+                  access: this.accessInput,
+                  class: this.classInput
+                });
+            }
+            this.idInput = '';
+            this.nameInput = '';
+            this.creditInput = '';
+            this.accessInput = '';
+            this.classInput = '';
+            this.isChange = false;
+          }
+        },
+      }
+      const courseInfo = Vue.createApp(app).mount("#course-admin");
+    </script>
+
+
+  </body>
+
+</html>
